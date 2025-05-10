@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 
 
 import { checkEmail,CheckPassword,CheckUserName } from "../utils/checkValidate";
-import { useNavigate } from "react-router-dom";
+
 import { createUserWithEmailAndPassword,signInWithEmailAndPassword ,updateProfile} from "firebase/auth";
 import { auth } from "../utils/firebase";
 
@@ -13,7 +13,7 @@ const Form=()=>{
     const [errorEmail,setErrorEmail]=useState(null);
     const [errorPassword,setErrorPassword]=useState(null);
     const [errorUserName,setErrorUserName]=useState(null)
-    const navigate=useNavigate();
+    
 
     const email=useRef(null);
     const password=useRef(null);
@@ -44,7 +44,7 @@ const Form=()=>{
                 displayName:userName.current.value, photoURL: "https://example.com/jane-q-user/profile.jpg"
               }).then(() => {
                 // Profile updated!
-                navigate("/browse")
+              
                 // ...
               }).catch((error) => {
                 // An error occurred
@@ -65,7 +65,7 @@ const Form=()=>{
             //sign in logic
             signInWithEmailAndPassword(auth, email.current.value, password.current.value)
   .then((userCredential) => {
-    navigate("/browse")
+   
     // Signed in 
     const user = userCredential.user;
     // ...
