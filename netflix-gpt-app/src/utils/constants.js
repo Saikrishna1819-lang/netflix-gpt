@@ -7,3 +7,13 @@ export const API_OPTIONS = {
     Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4MWE5NWVlZTU0ZjhjNjkyM2FmYjM4Zjc4ZTBhYWUxYyIsIm5iZiI6MS43NDY4NDE1ODU0MzI5OTk4ZSs5LCJzdWIiOiI2ODFlYWZmMTNlZWVjODgyNzRhZDg3MTciLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.7DBcRMk8D96BlD9_lvyVcVs2TnrVF1D5Xn9pKZ6HBWs'
   }
 };
+
+export const MOVIE_IMAGE_URL="https://image.tmdb.org/t/p/w500/";
+export const BG_IMAGE="https://assets.nflxext.com/ffe/siteui/vlv3/fa7be975-efc3-48c6-8188-f07fdd1aa476/web/IN-en-20250428-TRIFECTA-perspective_e045264e-b4d4-4a6f-b2cc-f95e3344a332_small.jpg" 
+
+export const SUPPORTED_LANGUAGES=[
+  { identifier:"en",name:"English" },
+  { identifier:"hindi", name:"Hindi" },
+
+];
+

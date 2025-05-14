@@ -12,9 +12,10 @@ const MainContainer=()=>{
     
 
     return(
-        <div className="relative w-full h-screen">
+        <div className="relative w-full h-screen ">
+             <VideoContainer id={id}/>
             <VideoTitle overview={overview} title={title}/>
-            <VideoContainer id={id}/>
+           
 
         </div>
     )

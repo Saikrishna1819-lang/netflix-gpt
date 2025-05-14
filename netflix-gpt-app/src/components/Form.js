@@ -95,7 +95,7 @@ const Form=()=>{
 
     }
     return(
-     <div className="bg-black relative z-10 top-[40px] max-w-md w-full mx-auto opacity-85  rounded-md ">
+     <div className="bg-black relative z-10 top-[150px] max-w-md w-full mx-auto opacity-85  rounded-md ">
         <div className="text-white px-20 py-16">
             <div className="font-bold text-3xl mb-5 ">{isSignIn?"Sign In":"Sign Up"}</div>
             <form onSubmit={(e)=>{
