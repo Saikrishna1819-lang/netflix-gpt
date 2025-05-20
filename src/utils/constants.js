@@ -4,7 +4,7 @@ export const API_OPTIONS = {
   method: 'GET',
   headers: {
     accept: 'application/json',
-    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4MWE5NWVlZTU0ZjhjNjkyM2FmYjM4Zjc4ZTBhYWUxYyIsIm5iZiI6MS43NDY4NDE1ODU0MzI5OTk4ZSs5LCJzdWIiOiI2ODFlYWZmMTNlZWVjODgyNzRhZDg3MTciLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.7DBcRMk8D96BlD9_lvyVcVs2TnrVF1D5Xn9pKZ6HBWs'
+    Authorization:'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4MWE5NWVlZTU0ZjhjNjkyM2FmYjM4Zjc4ZTBhYWUxYyIsIm5iZiI6MS43NDY4NDE1ODU0MzI5OTk4ZSs5LCJzdWIiOiI2ODFlYWZmMTNlZWVjODgyNzRhZDg3MTciLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.7DBcRMk8D96BlD9_lvyVcVs2TnrVF1D5Xn9pKZ6HBWs'
   }
 };
 
@@ -17,3 +17,5 @@ export const SUPPORTED_LANGUAGES=[
 
 ];
 
+
+export const OPENAI_KEY=process.env.REACT_APP_TMDB_KEY;
