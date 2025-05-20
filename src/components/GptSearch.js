@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { API_OPTIONS, BG_IMAGE } from "../utils/constants";
+import { API_OPTIONS, BG_IMAGE, OPENAI_KEY } from "../utils/constants";
 import lang from "../utils/langConstants";
 import GptMovieSuggestions from "./GptMovieSuggestions";
 
@@ -35,7 +35,7 @@ const GptSearch=()=>{
         const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
             method: "POST",
             headers: {
-                "Authorization": "Bearer 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",
+                "Authorization": "Bearer "+OPENAI_KEY,
                 "HTTP-Referer": window.location.href,
                 "X-Title": "MovieGPT",
                 "Content-Type": "application/json"
@@ -51,11 +51,13 @@ const GptSearch=()=>{
 
         // Parse the response 
         const data = await response.json();
+        console.log(data);
         
   
         
         // You can access the AI's reply with:
         const moviesList= data.choices[0]?.message?.content.split(",");
+        console.log(moviesList);
         const promiseArray=moviesList.map((movie)=> searchMovieTmdb(movie))
         const tmdbResults= await Promise.all(promiseArray);
       
