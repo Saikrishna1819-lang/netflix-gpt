@@ -79,7 +79,7 @@ const Header=()=>{
     {user && (
         <div className="flex gap-4 items-center  ">
          {showGpt&&(
-           <select className="rounded-lg bg-blue-900 text-white font-bold" onChange={handleChangeLanguage} >
+           <select className="rounded-lg bg-blue-900 px-4 py-2 text-white font-bold" onChange={handleChangeLanguage} >
             {SUPPORTED_LANGUAGES.map((lan)=> <option  key={lan.identifier} value={lan.identifier} >{lan.name}</option>
               
             )}

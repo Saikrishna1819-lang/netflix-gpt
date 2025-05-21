@@ -10,6 +10,8 @@ import useUpcommingMovies from "../hooks/useUpcommingMovies";
 import GptSearch from "./GptSearch";
 import SearchMovies from "./SearchMovies";
 import { API_OPTIONS } from "../utils/constants";
+import SingleMovieCard from "./SingleMovieCard";
+import {addShowSingle} from "../utils/moviesSlice"
 
 const Browse = () => {
   // Custom hooks to fetch movie categories
@@ -17,12 +19,29 @@ const Browse = () => {
   usePopularMovies();
   useTopRatedMovies();
   useUpcommingMovies();
+  const dispatch=useDispatch();
+
 
 
   const gptView = useSelector((store) => store.gpt.showGptSearch);
   const moviename = useSelector((store) => store.movies.searchedMovieName);
+  const showMovie=useSelector((store)=> store.movies.showSingleMovieData);
+  const showSingleMovie=useSelector((store)=> store.movies.showSingleMovie);
+useEffect(()=>{
+    if(showMovie)
+  {
+    dispatch(addShowSingle());
+  }
+},[showMovie])
+ 
+ 
+
 
   const [searchedMovie, setSearchedMovie] = useState(null);
+
+
+
+
 
   useEffect(() => {
     const fetchMovie = async () => {
@@ -44,6 +63,10 @@ const Browse = () => {
     fetchMovie();
   }, [moviename]);
 
+  const handleClose=()=>{
+    dispatch(addShowSingle())
+  }
+
   const filterMovieData = useMemo(() => {
     if (moviename && searchedMovie?.length) {
       return searchedMovie.filter(
@@ -55,8 +78,15 @@ const Browse = () => {
 
   return (
     <div className="w-full h-full relative">
+      
       <Header />
-      {filterMovieData ? (
+      
+      { showSingleMovie?(
+        <>
+        <SingleMovieCard onClose={handleClose}/>
+        </>
+      ):
+         filterMovieData ? (
         <SearchMovies movies={filterMovieData} />
       ) : gptView ? (
         <GptSearch />
