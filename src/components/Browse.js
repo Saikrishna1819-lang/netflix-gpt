@@ -20,6 +20,7 @@ const Browse = () => {
   useTopRatedMovies();
   useUpcommingMovies();
   const dispatch=useDispatch();
+  const [showSearchBtn,setShowSearchBtn]=useState(true);
 
 
 
@@ -79,14 +80,14 @@ useEffect(()=>{
   return (
     <div className="w-full h-full relative">
       
-      <Header />
+      <Header showSearchBtn={showSearchBtn} setShowSearchBtn={setShowSearchBtn} />
       
       { showSingleMovie?(
         <>
         <SingleMovieCard onClose={handleClose}/>
         </>
       ):
-         filterMovieData ? (
+         filterMovieData&&!showSearchBtn ? (
         <SearchMovies movies={filterMovieData} />
       ) : gptView ? (
         <GptSearch />

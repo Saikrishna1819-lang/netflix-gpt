@@ -2,7 +2,7 @@ import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { signOut, onAuthStateChanged } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import {addUser,removeUser} from "../utils/userSlice"
 import { API_OPTIONS, LOGO } from "../utils/constants";
 import { toggleGptSearchView } from "../utils/gptslice";
@@ -10,22 +10,40 @@ import { SUPPORTED_LANGUAGES } from "../utils/constants";
 import { changeLanguage } from "../utils/configSlice";
 import { addSearchMovieName } from "../utils/moviesSlice";
 
-const Header=()=>{
+const Header=({showSearchBtn,setShowSearchBtn})=>{
     const user=useSelector(store=> store.user)
+    const showSearch=useSelector(store=> store.movies.show)
 
 
 
  
     const dispatch=useDispatch();
     const navigate=useNavigate();
+     const moviename=useRef(null);
+  
     
     const showGpt=useSelector((store)=> store.gpt.showGptSearch)
    
-    const handleMovieSerach=async()=>{
-      const moviename=document.getElementById("movie").value;
+    const handleSearchMovie=()=>{
+       dispatch(addSearchMovieName(moviename.current.value)); 
+    }
+
+
+    const handleSerachBtn=()=>{
+     
+      setShowSearchBtn(!showSearchBtn)
+      if (!showSearchBtn) {
+    // Back button clicked
+    dispatch(addSearchMovieName(""));
+  } else {
+    // Search button clicked
+    if (moviename.current) {
+      moviename.current.value = "";
+    }
+  }
     
     
-   dispatch(addSearchMovieName(moviename));    
+     
       }
 
      
@@ -88,8 +106,8 @@ const Header=()=>{
           <button onClick={handleGptSearchClick} className="bg-blue-900 text-white font-semibold px-4 py-2 rounded-md">{ showGpt? "Home" :"GPT Search"}</button>
           {!showGpt&&(
             <>
-            <input id="movie" className="bg-white px-4 py-2 text-lg  rounded-lg" placeholder="Search"></input>
-          <button onClick={handleMovieSerach} className="px-4 py-2 bg-blue-800 rounded-lg text-white font-semibold text-md">Search</button>
+           {!showSearchBtn&&<input id="movie" ref={moviename} onChange={handleSearchMovie} className="bg-white px-4 py-2 text-lg  rounded-lg" placeholder="Search"></input>}
+          <button onClick={handleSerachBtn} className="px-4 py-2 bg-blue-800 rounded-lg text-white font-semibold text-md">{showSearchBtn?"Search":"Back"}</button>
           </>
           )}
         <button
